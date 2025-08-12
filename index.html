@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zenith | Yükleniyor...</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at center, #0a0f1c, #141e38);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      overflow: hidden;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      color: #00fff7;
+    }
+
+    .subtext {
+      font-size: 1.1rem;
+      opacity: 0.8;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .progress-bar-container {
+      width: 80%;
+      max-width: 700px;
+      height: 6px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00ffea, #0077ff);
+      transition: width 0.2s ease-out;
+    }
+
+    .loading-text {
+      font-size: 0.95rem;
+      color: #a0cfff;
+      margin-bottom: 2rem;
+    }
+
+    .welcome-text {
+      font-size: 1.3rem;
+      color: #00fff7;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .rules {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 700px;
+      width: 90%;
+      margin-bottom: 2rem;
+    }
+
+    .rules h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .rules ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .rules ul li {
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.95rem;
+      color: #ddd;
+    }
+
+    footer {
+      font-size: 0.8rem;
+      opacity: 0.5;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .welcome-text, .subtext {
+        font-size: 1rem;
+      }
+
+      .rules h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Zenith</h1>
+  <div class="subtext" id="game-info">Şu anda <i>Sandbox</i> modunda, <i>gm_bigcity</i> haritasında oynanıyor...</div>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <div class="loading-text" id="loading-text">Yükleniyor... 0%</div>
+
+  <div class="welcome-text">Zenith Sandbox Sunucusuna Hoş Geldiniz!</div>
+
+  <div class="rules">
+    <h2>Sunucu Kuralları</h2>
+    <ul>
+      <li>Başka oyuncuların eşyalarına veya oyun deneyimine müdahale ETMEYİN.</li>
+      <li>Spam, küfür, hakaret veya rahatsız edici davranışlarda bulunmayın.</li>
+      <li>Hile, exploit veya bug kullanmak kesinlikle yasaktır.</li>
+      <li>Oyunun tadını çıkarın, eğlenin ve başkalarının da eğlenmesine izin verin.</li>
+      <li>Workshop linki için !workshop linkinden addonları indirebilirsiniz!!!</li>
+    </ul>
+  </div>
+
+  <footer>
+    © 2025 Zenith Sunucusu | Tüm hakları saklıdır.
+  </footer>
+
+  <script>
+    let progress = 0;
+    const progressBar = document.getElementById('progress-bar');
+    const loadingText = document.getElementById('loading-text');
+
+    function simulateLoading() {
+      const step = Math.random() * 5 + 1; // 1-6 arası artış
+      progress += step;
+
+      if (progress > 100) progress = 100;
+
+      progressBar.style.width = `${progress}%`;
+      loadingText.textContent = `Yükleniyor... ${Math.floor(progress)}%`;
+
+      if (progress < 100) {
+        setTimeout(simulateLoading, 150);
+      } else {
+        loadingText.textContent = "Yükleme tamamlandı.";
+      }
+    }
+
+    simulateLoading();
+  </script>
+</body>
+</html>
